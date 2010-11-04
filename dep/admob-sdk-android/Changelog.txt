@@ -1,0 +1,81 @@
+Version:  20100820-ANDROID-3312276cc1406347
+-------------------------------------------
+ * Fixed install tracking to work with Google Analytics
+
+Version:  20100709-ANDROID-3312276cc1406347
+-------------------------------------------
+ * Added install tracking by inserting the following into your AndroidManifest.xml's <application> tag:
+        <!-- Track Market installs from AdMob ads -->		
+        <receiver android:name="com.admob.android.ads.analytics.InstallReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+Version:  20100527-ANDROID-3312276cc1406347
+-------------------------------------------
+ * Opt-in required to send location information for ad targeting
+    - If you application has ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission add the following to your manifest (use "false" to opt-out)
+        <meta-data android:value="true" android:name="ADMOB_ALLOW_LOCATION_FOR_ADS" />
+ * Fixed emulator support for Android 2.2
+ * Added optional AdView.cleanup() to aggressively free memory when AdViews are no longer needed
+ * Added additional protection against OutOfMemoryError causing crash when creating an ad
+
+Version:  20100331-ANDROID-3312276cc1406347
+-------------------------------------------
+ * Fixed bug where pressing back using back key would crash on Canvas Ad Unit
+ * Removed spurious log if publisher id is being set by call to AdManager.setPublisherId(String) instead of using meta-data in AndroidManifest.xml
+ * Fixed bug with recycling of bitmaps when switching between ads
+
+Version:  20100322-ANDROID-3312276cc1406347
+-------------------------------------------
+ * Minimum supported Android version is now 1.5 (API level 3)
+ * Size of ads specified in device independent pixels (dip) instead of screen pixels (bigger on Droid, Nexus One, and other high density screens)
+ * Changed the interface for requesting test ads (tied to certain phones in case accidentally published to Market with test mode enabled)
+    - Removed AdManager.setInTestMode and AdManager.isInTestMode
+    - Added AdManager.setTestDevices and AdManager.isTestDevice
+ * Added AdManager.setTestAction to test how your application responds to a variety of ads being clicked
+ * Notify when an ad is clicked through AdView.setOnClickListener
+ * AdView.setListener renamed to AdView.setAdListener
+ * Changed the AdView.AdListener interface to AdListener (no longer an inner interface)
+    - Removed onNewAd():  use onReceiveAd(AdView) instead
+    - Added onReceiveRefreshedAd and onFailedToReceiveRefreshedAd for users who want additional callbacks
+    - Added SimpleAdListener which is an empty implementation of AdListener as a convenience if you want to use a subset of the interface
+ * Removed the textColor attribute and replaced it with primaryTextColor and secondaryTextColor attributes
+ * Removed the isGoneWithoutAd attribute.  See the JavaDoc for details.
+    - The visibility will be View.GONE without an ad if the width/height are FILL_PARENT/WRAP_CONTENT
+    - The visibility will be View.VISIBLE if specific sizes are set for the width/height 
+ * AdView objects created in code require Activity as context to support display of canvas ad unit
+ * Focus ring and touch highlighting colors are specific to the UI (e.g. red in Motoblur, green in HTC Sense UI)
+ * Supports a variety of new ad types including CPM ads
+
+Version:  20090728-ANDROID-3312276cc1406347
+-------------------------------------------
+ * Removed the need for the READ_PHONE_STATE permission (if your application does not need it you can delete it from AndroidManifest.xml during upgrade)
+ * Changed the AdView.AdListener interface
+    - Deprecated onNewAd() and replaced it with onReceiveAd(AdView) which behaves exactly the same but notifies you of the view which received the new ad
+    - Added onFailedToReceiveAd(AdView) which is called when an ad is unavailable (e.g. no network connection, no fill)
+ * Lunar Lander sample includes an obfuscation build step to produce a smaller .apk
+ * Added an animation on clicks to give feedback to the user that action is being taken
+ * AdView layout better optimized for performance
+ * Clicks follow 302 redirects before opening the browser
+ * Fixed bug where when the visibility of an AdView was set to View.GONE exactly when a new ad came in it could cause the application to Force Close 
+ * Fixed bug where ads in a ListView get loaded but do not display when they are not visible onscreen.
+ 
+Version:  20090331-ANDROID-cc0d740c1b8c3da5 (Re-released May 4, 2009 with updated sample configuration)
+-------------------------------------------------------------------------------------------------------
+ * Updated Lunar Lander sample project settings to work with Android SDK 1.5 and the Eclipse plug-in 0.9
+
+Version:  20090331-ANDROID-cc0d740c1b8c3da5
+-------------------------------------------
+ * Test mode to help verify SDK integration
+ * Minor documentation and logging clarifications
+ * Include Eclipse files with Lunar Lander sample
+ * Fixed bug in the visual layout editor (no longer shows "NullPointerException: null" when an ad is on the screen)
+ * Fixed bug so AdView.requestFreshAd() works after an ad does not fill
+ * Fixed bug to turn GPS off after obtaining user's location (used to stay on until the GPS was manually turned off or the phone restarted)
+ * Fixed bug where an AdView with visibility GONE would come back if automatically refreshing ads
+
+Version:  20081201-ANDROID-924bc8a810aed766
+-------------------------------------------
+ * Initial release

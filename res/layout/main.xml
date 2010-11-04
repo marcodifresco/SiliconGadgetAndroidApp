@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ 	xmlns:app="http://schemas.android.com/apk/res/"
+    package="com.silicongadget.androidapp"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+	<TextView  
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content" 
+    	android:text="Silicon Gadget"
+    	android:id="@+id/feedtitle"
+	    />
+
+	<TextView  
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content" 
+    	android:text=""
+    	android:id="@+id/feedpubdate"
+    	/>
+    	
+	<ListView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:layout_marginBottom="50dip"
+		android:id="@+id/itemlist"
+		/>
+		    
+	<!-- Place an AdMob ad at the bottom of the screen. -->
+	<!-- It has white text on a black background. -->
+	<!-- The description of the surrounding context is 'Android game'. -->
+	<com.admob.android.ads.AdView  
+		android:id="@+id/ad" 
+		android:visibility="visible"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		app:backgroundColor="#000000"
+		app:primaryTextColor="#FFFFFF"
+		app:secondaryTextColor="#CCCCCC"
+		app:keywords="Silicon Gadget Android App"/>
+
+</RelativeLayout>

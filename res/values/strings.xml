@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Welcome to the Silicon Gadget\'s Android App. This application is still under development, but keep an eye on it.</string>
+    <string name="app_name">Silicon Gadget</string>
+</resources>
